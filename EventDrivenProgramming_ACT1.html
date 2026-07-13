@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Student Grade Evaluator</title>
+        <style>
+             h1 {
+                margin-left: 50px;
+                color: navy;
+                }
+            .container {
+                margin-left: 50px;
+            }
+            button{
+                font-weight: bold;
+            }
+            h4{
+                font-weight:bold;
+            }
+            label{
+                font-weight: bold;
+            }
+            h4 span {
+            font-weight: normal;
+            }
+            footer {
+            margin-top: 40px;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            border-top: 1px solid #ccc;
+            }
+
+            footer a {
+            color: navy;
+            text-decoration: none;
+            font-weight: bold;
+            }
+
+            footer a:hover {
+            text-decoration: underline;
+            }
+        </style>
+    </head>
+
+<body>
+<h1>Student Grade Evaluator</h1><br>
+<!--User Inputs interface-->
+ <div class="container">
+<label>Student Name:</label><br>
+<input type="text" id="studentName"><br><br>
+
+<label>Grade 1:</label><br>
+<input type="number" id="grade1"><br><br>
+
+<label>Grade 2:</label><br>
+<input type="number" id="grade2"><br><br>
+
+<label>Grade 3:</label><br>
+<input type="number" id="grade3"><br><br>
+
+<button onclick="compute()">Compute</button>
+<button onclick="clearForm()">Clear</button>
+
+<!--Output-->
+<h3>Result</h3>
+<h4>Name: <span id="nameOfStudent"></span> </h4>
+<h4>Average: <span id="studentAverage"></span> </h4>
+<h4>Remark: <span id="studentRemark"></span> </h4>
+</div>
+
+<!--Grade calculators functions :))-->
+<script>
+function compute(){
+    let name = document.getElementById("studentName").value;
+    let grade1 = Number(document.getElementById("grade1").value);
+    let grade2= Number(document.getElementById("grade2").value);
+    let grade3 = Number(document.getElementById("grade3").value);
+
+    let grade1Raw = document.getElementById("grade1").value.trim();
+    let grade2Raw = document.getElementById("grade2").value.trim();
+    let grade3Raw = document.getElementById("grade3").value.trim();
+    let nameRegex = /^[A-Za-z\s]+$/;
+    //validate input first
+    //name validation
+    if (name === "") {
+        alert("Please enter the student's name.");
+        return;
+    }
+
+    if (!nameRegex.test(name)) {
+        alert("Name must contain letters only (no numbers or symbols).");
+        return;
+    }
+
+    //validation for grades
+    if (grade1Raw === "") {
+        alert("Please enter the student's Grade 1.");
+        return;
+    }
+    if (grade1Raw < 0 || grade1 > 100) {
+        alert("Grade 1 must be between 0 and 100.");
+        return;
+    }
+    if (grade2Raw === "") {
+        alert("Please enter the student's Grade 2.");
+        return;
+    }
+    if (grade2Raw< 0 || grade2 > 100) {
+        alert("Grade 2 must be between 0 and 100.");
+        return;
+    }
+    if (grade3Raw === "") {
+        alert("Please enter the student's Grade 3.");
+        return;
+    }
+     if (grade3Raw < 0 || grade3 > 100) {
+        alert("Grade 3 must be between 0 and 100.");
+        return;
+    }
+   
+
+    let average =(grade1+grade2+grade3)/3;
+   
+    //remark for student
+    let remark;
+    if (average >= 90){
+        remark = "Excellent"
+        
+    } 
+    else if (average >= 85) {
+        remark = "Very Good"
+        
+    }
+     else if (average >= 80) {
+        remark = "Good"
+        
+    }
+     else if (average >= 75) {
+        remark = "Passed"
+       
+    }
+     else {
+        remark = "Failed"
+       }
+
+    //displaying the result
+    document.getElementById("nameOfStudent").innerText= name;
+    document.getElementById("studentAverage").innerText = average.toFixed(2);
+    document.getElementById("studentRemark").innerText = remark;
+    }
+    //clear all fields
+    function clearForm(){
+    document.getElementById("studentName").value = "";
+    document.getElementById("grade1").value = "";
+    document.getElementById("grade2").value = "";
+    document.getElementById("grade3").value = "";
+
+    document.getElementById("nameOfStudent").innerText = "";
+    document.getElementById("studentAverage").innerText = "";
+    document.getElementById("studentRemark").innerText = "";
+    }
+
+</script>
+
+</body>
+<footer>
+<p>Created by <strong> Arianne B. Belda</strong> | <a href="https://github.com/yhanyhan123" target="_blank">GitHub</a></p>
+
+</footer>
+
+
+</html>
